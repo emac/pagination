@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="pagination">
+    <ul class="pagination pagination-centered">
+        <li th:class="${page.first}? 'disabled' : ''">
+            <span th:if="${page.first}">首页</span>
+            <a th:if="${not page.first}" th:href="@{${page.url}(page=0,size=${page.size})}">首页</a>
+        </li>
+        <li th:class="${page.hasPrevious}? '' : 'disabled'">
+            <span th:if="${not page.hasPrevious}">上一页</span>
+            <a th:if="${page.hasPrevious}" th:href="@{${page.url}(page=${page.number-1},size=${page.size})}">上一页</a>
+        </li>
+        <li th:each="item : ${page.items}" th:class="${item.current}? 'active' : ''">
+            <span th:if="${item.current}" th:text="${item.number}">1</span>
+            <a th:if="${not item.current}" th:href="@{${page.url}(page=${item.number-1},size=${page.size})}"><span
+                    th:text="${item.number}">1</span></a>
+        </li>
+        <li th:class="${page.hasNext}? '' : 'disabled'">
+            <span th:if="${not page.hasNext}">下一页</span>
+            <a th:if="${page.hasNext}" th:href="@{${page.url}(page=${page.number+1},size=${page.size})}">下一页</a>
+        </li>
+        <li th:class="${page.last}? 'disabled' : ''">
+            <span th:if="${page.last}">末页</span>
+            <a th:if="${not page.last}" th:href="@{${page.url}(page=${page.totalPages-1},size=${page.size})}">末页</a>
+        </li>
+    </ul>
+</div>
+</html>

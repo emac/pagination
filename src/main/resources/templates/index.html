@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Pagination Demo</title>
+</head>
+<body>
+<div layout:fragment="header"><h1>中国区县列表</h1></div>
+<div layout:fragment="content">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>省份</th>
+            <th>城市</th>
+            <th>区县</th>
+        </tr>
+        </thead>
+        <tbody th:each="d:${page.content}">
+        <tr>
+            <th scope="row" th:text="${d.id}">#</th>
+            <th th:text="${d.province}">省份</th>
+            <th th:text="${d.city}">城市</th>
+            <th th:text="${d.district}">区县</th>
+        </tr>
+        </tbody>
+    </table>
+    <div th:replace="page"></div>
+</div>
+</body>
+</html>
